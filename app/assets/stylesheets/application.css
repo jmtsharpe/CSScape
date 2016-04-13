@@ -1,0 +1,413 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+ html, body, header, nav, h1, a, ul, li,
+ strong, main, section, img, div, h2, h4, h3, p,
+ form, fieldset, label, textarea,
+ button, article, footer, small {
+   margin: 0;
+   padding: 0;
+   border: 0;
+   outline: 0;
+   font-size: inherit;
+   font-family: inherit;
+   box-sizing: content-box;;
+   color: inherit;
+   text-align: inherit;
+   text-decoration: none;
+   background: transparent;
+   box-shadow: none;
+ }
+
+ input:focus,
+ select:focus,
+ textarea:focus,
+ button:focus {
+     outline: none;
+ }
+
+ body {
+   text-decoration: none;
+   font-family: sans-serif;
+   height: 100%;
+   box-sizing: content-box;
+   position: absolute;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   overflow: auto;
+ }
+
+ ul {
+   list-style: none;
+ }
+
+ h1 {
+   font-size: 36px;
+ }
+
+
+
+  /*/ CLEARFIX /*/
+
+ .group:after {
+    content: "";
+    clear: both;
+    display: block;
+  }
+
+/*/ HEADER /*/
+
+.csscape-header {
+  color: white;
+  height: 40px;
+  background: #222222;
+
+}
+
+
+/*/ PRISON-BACKDROP /*/
+
+.prison-background {
+  position: relative;
+  background: #aaaaaa;
+  height: 600px;
+  width: 1000px;
+}
+
+.prison-wall {
+  position: relative;
+  margin: auto;
+  width: 600px;
+
+  height: 500px;
+  background: #999999;
+}
+
+.prison-floor {
+  background: #bbbbbb;
+  margin: auto;
+  width: 80%;
+  height: 100px;
+}
+
+.prison-wall-sidecorner-left {
+  border-top: 50px solid #aaaaaa;
+  border-left: 100px solid #aaaaaa;
+  border-right: 100px solid #bbbbbb;
+  border-bottom: 50px solid #bbbbbb;
+
+  float: left;
+}
+
+.prison-wall-sidecorner-right {
+
+  float: right;
+  border-top: 50px solid #aaaaaa;
+  border-right: 100px solid #aaaaaa;
+  border-left: 100px solid #bbbbbb;
+  border-bottom: 50px solid #bbbbbb;
+
+}
+
+/*/ PRISON DOOR /*/
+
+.prison-door {
+  border-radius: 1px;
+  position: absolute;
+  bottom: 0;
+  left: 200px;
+
+  background: #3F250B;
+  height: 300px;
+  width: 200px;
+}
+
+.prison-door-opening {
+  z-index: 10;
+  width: 0;
+  height: 250px;
+  border-top: 25px solid black;
+  border-left: 150px solid transparent;
+  border-right: 50px solid black;
+  border-bottom: 25px solid #111111;
+}
+
+.prison-door-window {
+  position: absolute;
+  right: 60px;
+  top: 30px;
+  height: 75px;
+  width: 75px;
+  background: black;
+  border-top: 2px solid #5F250B;
+  border-right: 5px solid #2F250B;
+  border-bottom: 2px solid #5F250B;
+  border-left: 5px solid #2F250B;
+}
+
+.bar {
+  position: absolute;
+  top: -2px;
+  width: 0;
+  height: 78px;
+  border-right: 5px solid #999999;
+  border-left: 5px solid #999999;
+  border-radius: 3px;
+}
+
+.bar-1 {
+  left: 7px
+}
+
+.bar-2 {
+  left: 32px;
+
+}
+
+.bar-3 {
+  left: 57px;
+}
+
+/*.prison-door-window-open {
+  transform: scale(1, 0.9);
+  position: absolute;
+  right: 60px;
+  top: 30px;
+  height: 75px;
+  width: 75px;
+  background: black;
+  border-top: 5px solid #5F250B;
+  border-right: 5px solid #2F250B;
+  border-bottom: 5px solid #5F250B;
+  border-left: 5px solid #2F250B;
+}*/
+
+.prison-door-window-open-top {
+  position: absolute;
+  right: 80px;
+  top: 35px;
+  height: 50px;
+  width: 60px;
+  background: black;
+  border-top: 2px solid #5F250B;
+  border-right: 8px solid #2F250B;
+  border-bottom: none;
+  border-left: none;
+  transform: skewy(10deg);
+}
+
+.prison-door-window-open-bottom {
+
+  position: absolute;
+  right: 80px;
+  top: 60px;
+  height: 50px;
+  width: 60px;
+  background: black;
+  border-top: none;
+  border-right: 8px solid #2F250B;
+  border-bottom: 2px solid #5F250B;
+  border-left: none;
+
+  /*transform: skewy(-10deg);*/
+}
+
+.bar-open {
+  position: absolute;
+  top: -2px;
+  width: 0;
+  border-right: 5px solid grey;
+  border-left: 5px solid #999999;
+  border-radius: 5px;
+}
+
+.bar-1-open {
+  left: 5px;
+  height: 82px;
+}
+
+.bar-2-open {
+  left: 25px;
+  height: 77px;
+  border-right: 4px solid grey;
+  border-left: 5px solid #999999;
+
+}
+
+.bar-3-open {
+  left: 45px;
+  height: 73px;
+  border-right: 4px solid grey;
+  border-left: 4px solid #999999;
+}
+
+
+/*/ PRISON BED /*/
+
+.prison-bed-div {
+  position: absolute;
+  right: 50px;
+  top: 290px;
+
+  height: 300px;
+  width: 300px;
+}
+
+.head-board {
+  border: 10px solid grey;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom: none;
+  position: absolute;
+  bottom: 40px;
+  right: 75px;
+  height: 105px;
+  width: 180px;
+}
+
+.head-board-bars {
+  border-top: 45px dashed transparent;
+}
+
+.footer-legs {
+  border: 10px solid grey;
+  border-top: 5px solid grey;
+  border-bottom: none;
+
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 45px;
+  width: 180px;
+}
+
+.top-covers {
+  border-top-left-radius: 1px;
+  border-top-right-radius: 2px;
+  transform: skewX(70deg);
+  position: absolute;
+  bottom: 95px;
+  right: 35px;
+  background: #7F654B;
+  height: 25px;
+  width: 200px;
+
+}
+
+.side-covers {
+  border-bottom: 5px solid grey;
+  border-top-left-radius: 2px;
+  transform: skewy(20deg);
+  position: absolute;
+  bottom: 58px;
+  right: 200px;
+  background: #7F654B;
+  height: 45px;
+  width: 70px;
+}
+
+.foot-of-bed {
+  border-radius: 2px;
+  position: absolute;
+  bottom: 50px;
+  right: 0;
+  background: #dFd5cB;
+  height: 44px;
+  width: 199px;
+  border: 1px dashed #cFc5bB;
+}
+.bed-clicker {
+  position: absolute;
+  bottom: 10px;
+  right: 0;
+  background: transparent;
+  height: 25px;
+  width: 25px;
+}
+
+.bed-clicker:hover {
+  cursor: pointer;
+}
+
+.moved-top-covers {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border-top-left-radius: 6px;
+  background: #dFd5cB;
+  border-top: 5px solid #856a52;
+  width: 200px;
+  height: 9px;
+  /*border-top: 5px solid transparent;
+  border-right: 100px solid transparent;
+  border-bottom: 5px solid #dFd5cB;
+  border-left: 101px solid #dFd5cB;*/
+}
+
+.moved-side-covers {
+  position: absolute;
+  border-right: 1px dashed #cFc5bB;
+  bottom: 0;
+  right: 0;
+  background: #dFd5cB;
+  height: 47px;
+  width: 20px;
+  border-left: 20px solid #856a52;
+  border-top-left-radius: 10px;
+}
+ /*/ LAMP /*/
+
+.lamp-container {
+  position: absolute;
+  top: 300px;
+  left: 100px;
+}
+
+.lamp-wall-mount {
+  border-radius: 50%;
+  height: 10px;
+  width: 0;
+  border: 5px solid #B5A642;
+
+}
+
+.lamp-wall-buttress {
+  position: absolute;
+  top: 0;
+  left: 5px;
+  border-bottom-right-radius: 10px;
+  height: 10px;
+  width: 10px;
+  border-right: 5px solid #B5A642;
+  border-bottom: 5px solid #B5A642;
+}
+
+.lamp-bulb-bottom {
+
+}
+
+.lamp-bulb {
+  position: absolute;
+  top: -12px;
+  left: 12px;
+
+  border-radius: 50%;
+  border: 7px solid #FFF9D0;
+
+  box-shadow: 120px 80px 40px 20px #FFF9D0;
+}
