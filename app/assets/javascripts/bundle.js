@@ -53,6 +53,7 @@
 	var IndexRoute = __webpack_require__(166).IndexRoute;
 	var Chapter1 = __webpack_require__(223);
 	var App = __webpack_require__(226);
+	var Start = __webpack_require__(230);
 	
 	var routes = React.createElement(
 	  Route,
@@ -71,7 +72,8 @@
 	      React.createElement(
 	        Route,
 	        { path: '/', component: App },
-	        React.createElement(Route, { path: '/api/chapter1', component: Chapter1 })
+	        React.createElement(Route, { path: 'start', component: Start }),
+	        React.createElement(Route, { path: 'chapter1', component: Chapter1 })
 	      )
 	    )
 	  ), document.getElementById('root'));
@@ -25166,32 +25168,74 @@
 /* 223 */
 /***/ function(module, exports, __webpack_require__) {
 
-	React = __webpack_require__(1);
-	PrisonDoor = __webpack_require__(224);
-	PrisonBed = __webpack_require__(225);
-	PrisonLamp = __webpack_require__(227);
+	var React = __webpack_require__(1);
+	var PrisonDoor = __webpack_require__(224);
+	var PrisonBed = __webpack_require__(225);
+	var PrisonLamp = __webpack_require__(227);
+	var LightSwitch = __webpack_require__(228);
+	var CreepyEyes = __webpack_require__(229);
 	
 	var Prison = React.createClass({
 	  displayName: 'Prison',
 	
 	
 	  getInitialState: function () {
-	    return { haveKey: false, haveLetter: false, letterOpen: false, doorOpen: false };
+	    return { haveKey: false, haveLetter: false, letterOpen: false, doorOpen: false, lightsOn: true };
 	  },
 	
-	  openDoor: function () {
-	    this.setState({ doorOpen: true });
+	  toggleLights: function () {
+	    this.setState({ lightsOn: !this.state.lightsOn });
 	  },
 	
 	  render: function () {
 	
+	    if (this.state.lightsOn) {
+	      return React.createElement(
+	        'div',
+	        { className: 'prison-background' },
+	        React.createElement(PrisonLamp, { lightsOn: this.state.lightsOn }),
+	        React.createElement(
+	          'div',
+	          { className: 'prison-wall' },
+	          React.createElement(
+	            'div',
+	            { className: 'switch-box', onClick: this.toggleLights },
+	            React.createElement('div', { className: 'switch-toggle' })
+	          ),
+	          React.createElement(PrisonDoor, null)
+	        ),
+	        React.createElement('div', { className: 'prison-wall-sidecorner-left' }),
+	        React.createElement('div', { className: 'prison-wall-sidecorner-right' }),
+	        React.createElement(
+	          'div',
+	          { className: 'prison-floor' },
+	          React.createElement(PrisonBed, null)
+	        )
+	      );
+	    }
+	
 	    return React.createElement(
 	      'div',
 	      { className: 'prison-background' },
-	      React.createElement(PrisonLamp, null),
+	      React.createElement(CreepyEyes, null),
+	      React.createElement(
+	        'div',
+	        { className: 'darken-room' },
+	        React.createElement(
+	          'p',
+	          { className: 'hidden-notes' },
+	          'C E G'
+	        )
+	      ),
+	      React.createElement(PrisonLamp, { lightsOn: this.state.lightsOn }),
 	      React.createElement(
 	        'div',
 	        { className: 'prison-wall' },
+	        React.createElement(
+	          'div',
+	          { className: 'switch-box-dark', onClick: this.toggleLights },
+	          React.createElement('div', { className: 'switch-toggle-dark' })
+	        ),
 	        React.createElement(PrisonDoor, null)
 	      ),
 	      React.createElement('div', { className: 'prison-wall-sidecorner-left' }),
@@ -25388,18 +25432,98 @@
 	
 	
 	  render: function () {
+	
+	    if (this.props.lightsOn) {
+	      return React.createElement(
+	        "div",
+	        { className: "lamp-container" },
+	        React.createElement("div", { className: "lamp-wall-mount" }),
+	        React.createElement("div", { className: "lamp-wall-buttress" }),
+	        React.createElement("div", { className: "lamp-bulb-bottom" }),
+	        React.createElement("div", { className: "lamp-bulb-on" })
+	      );
+	    }
+	
 	    return React.createElement(
 	      "div",
 	      { className: "lamp-container" },
 	      React.createElement("div", { className: "lamp-wall-mount" }),
 	      React.createElement("div", { className: "lamp-wall-buttress" }),
 	      React.createElement("div", { className: "lamp-bulb-bottom" }),
-	      React.createElement("div", { className: "lamp-bulb" })
+	      React.createElement("div", { className: "lamp-bulb-out" })
 	    );
 	  }
 	});
 	
 	module.exports = Lamp;
+
+/***/ },
+/* 228 */
+/***/ function(module, exports, __webpack_require__) {
+
+	React = __webpack_require__(1);
+	
+	LightSwitch = React.createClass({
+	  displayName: "LightSwitch",
+	
+	
+	  render: function () {
+	    return React.createElement(
+	      "div",
+	      { className: "switch-box" },
+	      React.createElement("div", { className: "switch-toggle" })
+	    );
+	  }
+	
+	});
+	
+	module.exports = LightSwitch;
+
+/***/ },
+/* 229 */
+/***/ function(module, exports, __webpack_require__) {
+
+	React = __webpack_require__(1);
+	
+	CreepyEyes = React.createClass({
+	  displayName: "CreepyEyes",
+	
+	  render: function () {
+	    return React.createElement(
+	      "div",
+	      { className: "creepy-eyes-div" },
+	      React.createElement("div", { className: "left-eye" }),
+	      React.createElement("div", { className: "right-eye" })
+	    );
+	  }
+	});
+	
+	module.exports = CreepyEyes;
+
+/***/ },
+/* 230 */
+/***/ function(module, exports, __webpack_require__) {
+
+	React = __webpack_require__(1);
+	
+	Start = React.createClass({
+	  displayName: 'Start',
+	
+	
+	  render: function () {
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement(
+	        'button',
+	        null,
+	        'Start'
+	      )
+	    );
+	  }
+	});
+	
+	module.exports = Start;
 
 /***/ }
 /******/ ]);
