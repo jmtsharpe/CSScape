@@ -11,7 +11,8 @@ var Start = require('./components/startPage');
 
 var routes = (
   <Route path="/" component={App}>
-    <Route path="/api/chapter1" component={Chapter1} />
+    <Route path="startPage" component={Start}/>
+    <Route path="chapter1" component={Chapter1} />
   </Route>
 );
 
@@ -20,10 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
   ReactDOM.render(
     <div>
       <Router history={hashHistory}>
-        <Route path="/" component={App} >
-          <Route path="start" component={Start} />
-          <Route path="chapter1" component={Chapter1} />
-        </Route>
+        {routes}
       </Router>
     </div>,
     document.getElementById('root')

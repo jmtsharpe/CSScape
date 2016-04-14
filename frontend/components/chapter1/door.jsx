@@ -37,14 +37,23 @@ var PrisonDoor = React.createClass({
   },
 
   openDoor: function () {
-    this.setState({ doorOpen: !this.state.doorOpen});
+    this.setState({ doorOpen: true })
+  },
+
+  tryDoor: function () {
+    if (!this.props.haveKey) {
+      debugger
+      window.alert("The door is locked")
+    } else {
+      window.alert("That key doesn't work on this door")
+    }
   },
 
   render: function () {
 
     if (this.state.doorOpen) {
       return (
-        <div className="prison-door" onClick={this.openDoor}>
+        <div className="prison-door" onClick={this.tryDoor}>
           <div className="prison-door-opening">
             <div className="prison-door-window-open-bottom"></div>
             <div className="prison-door-window-open-top">
@@ -53,6 +62,7 @@ var PrisonDoor = React.createClass({
               <div className="bar-open bar-3-open"></div>
             </div>
           </div>
+          <div className="door-handle-open" onClick={this.tryDoor}></div>
         </div>
       );
     }
@@ -63,6 +73,11 @@ var PrisonDoor = React.createClass({
           <div className="bar bar-1" onClick={this.clickBar1}></div>
           <div className="bar bar-2" onClick={this.clickBar2}></div>
           <div className="bar bar-3" onClick={this.clickBar3}></div>
+        </div>
+        <div className="door-handle-div" onClick={this.tryDoor}>
+          <div className="door-key-hole"></div>
+          <div className="door-key-hole-bottom"></div>
+          <div className="door-handle"></div>
         </div>
       </div>
     );

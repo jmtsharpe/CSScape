@@ -1,6 +1,6 @@
-React = require('react');
+var React = require('react');
 
-Start = React.createClass({
+var Start = React.createClass({
 
   render: function () {
     return (

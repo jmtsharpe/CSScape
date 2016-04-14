@@ -52,13 +52,14 @@
 	var Route = __webpack_require__(166).Route;
 	var IndexRoute = __webpack_require__(166).IndexRoute;
 	var Chapter1 = __webpack_require__(223);
-	var App = __webpack_require__(226);
-	var Start = __webpack_require__(230);
+	var App = __webpack_require__(231);
+	var Start = __webpack_require__(232);
 	
 	var routes = React.createElement(
 	  Route,
 	  { path: '/', component: App },
-	  React.createElement(Route, { path: '/api/chapter1', component: Chapter1 })
+	  React.createElement(Route, { path: 'startPage', component: Start }),
+	  React.createElement(Route, { path: 'chapter1', component: Chapter1 })
 	);
 	
 	document.addEventListener("DOMContentLoaded", function () {
@@ -69,12 +70,7 @@
 	    React.createElement(
 	      Router,
 	      { history: hashHistory },
-	      React.createElement(
-	        Route,
-	        { path: '/', component: App },
-	        React.createElement(Route, { path: 'start', component: Start }),
-	        React.createElement(Route, { path: 'chapter1', component: Chapter1 })
-	      )
+	      routes
 	    )
 	  ), document.getElementById('root'));
 	});
@@ -25171,29 +25167,131 @@
 	var React = __webpack_require__(1);
 	var PrisonDoor = __webpack_require__(224);
 	var PrisonBed = __webpack_require__(225);
-	var PrisonLamp = __webpack_require__(227);
-	var LightSwitch = __webpack_require__(228);
-	var CreepyEyes = __webpack_require__(229);
+	var PrisonLamp = __webpack_require__(226);
+	var LightSwitch = __webpack_require__(227);
+	var CreepyEyes = __webpack_require__(228);
+	var Poster = __webpack_require__(229);
 	
 	var Prison = React.createClass({
 	  displayName: 'Prison',
 	
 	
 	  getInitialState: function () {
-	    return { haveKey: false, haveLetter: false, letterOpen: false, doorOpen: false, lightsOn: true };
+	    return {
+	      haveKey: false,
+	      haveLetter: false,
+	      letterOpen: false,
+	      doorOpen: false,
+	      lightsOn: true,
+	      sheetMoved: false,
+	      posterPeeled: false,
+	      safeOpen: false
+	    };
+	  },
+	
+	  openLetter: function () {
+	    this.setState({ letterOpen: !this.state.letterOpen });
+	  },
+	
+	  getKey: function () {
+	    debugger;
+	    this.setState({ haveKey: true });
 	  },
 	
 	  toggleLights: function () {
 	    this.setState({ lightsOn: !this.state.lightsOn });
 	  },
 	
+	  moveSheets: function () {
+	    this.setState({ sheetMoved: !this.state.sheetMoved });
+	  },
+	
+	  peelPoster: function () {
+	    this.setState({ posterPeeled: true });
+	  },
+	
+	  openSafe: function () {
+	    if (this.state.haveKey) {
+	      this.setState({ safeOpen: true });
+	    } else {
+	      window.alert("This safe is locked.");
+	    }
+	  },
+	
 	  render: function () {
+	
+	    if (!this.state.haveKey) {
+	      var key = React.createElement(
+	        'div',
+	        { className: 'key-div', onClick: this.getKey },
+	        React.createElement('div', { className: 'key-head' }),
+	        React.createElement('div', { className: 'key-shaft' }),
+	        React.createElement('div', { className: 'key-teeth' })
+	      );
+	    }
+	
+	    if (this.state.posterPeeled && !this.state.safeOpen) {
+	      var safeLock = React.createElement('div', { className: 'safe-lock', onClick: this.openSafe });
+	    }
+	
+	    if (this.state.safeOpen) {
+	      var letterClicker = React.createElement('div', { className: 'letter-clicker', onClick: this.openLetter });
+	    }
+	
+	    if (!this.state.posterPeeled) {
+	      var posterClicker = React.createElement('div', { className: 'poster-clicker', onClick: this.peelPoster });
+	    }
+	
+	    if (this.state.letterOpen) {
+	      var openLetter = React.createElement(
+	        'div',
+	        { className: 'open-letter', onClick: this.openLetter },
+	        React.createElement(
+	          'div',
+	          { className: 'music-staffs' },
+	          React.createElement(
+	            'div',
+	            { className: 'music-staff-1' },
+	            React.createElement('div', { className: 'g-note-1 note' }),
+	            React.createElement('div', { className: 'g-note-2 note' })
+	          ),
+	          React.createElement(
+	            'div',
+	            { className: 'music-staff-2' },
+	            React.createElement('div', { className: 'e-note-1 note' }),
+	            React.createElement('div', { className: 'e-note-2 note' })
+	          ),
+	          React.createElement(
+	            'div',
+	            { className: 'music-staff-3' },
+	            React.createElement('div', { className: 'c-note-1 note' }),
+	            React.createElement('div', { className: 'c-note-2 note' })
+	          ),
+	          React.createElement('div', { className: 'music-staff-4' }),
+	          React.createElement(
+	            'h2',
+	            null,
+	            'THIS SONG WILL SET YOU FREE'
+	          ),
+	          React.createElement(
+	            'h3',
+	            null,
+	            'play a bar'
+	          )
+	        )
+	      );
+	    }
 	
 	    if (this.state.lightsOn) {
 	      return React.createElement(
 	        'div',
 	        { className: 'prison-background' },
 	        React.createElement(PrisonLamp, { lightsOn: this.state.lightsOn }),
+	        React.createElement(Poster, { peeled: this.state.posterPeeled, safeOpen: this.state.safeOpen }),
+	        posterClicker,
+	        safeLock,
+	        letterClicker,
+	        openLetter,
 	        React.createElement(
 	          'div',
 	          { className: 'prison-wall' },
@@ -25202,14 +25300,16 @@
 	            { className: 'switch-box', onClick: this.toggleLights },
 	            React.createElement('div', { className: 'switch-toggle' })
 	          ),
-	          React.createElement(PrisonDoor, null)
+	          React.createElement(PrisonDoor, { haveKey: this.state.haveKey })
 	        ),
 	        React.createElement('div', { className: 'prison-wall-sidecorner-left' }),
 	        React.createElement('div', { className: 'prison-wall-sidecorner-right' }),
 	        React.createElement(
 	          'div',
 	          { className: 'prison-floor' },
-	          React.createElement(PrisonBed, null)
+	          React.createElement(PrisonBed, { sheetMoved: this.state.sheetMoved }),
+	          key,
+	          React.createElement('div', { className: 'bed-clicker', onClick: this.moveSheets })
 	        )
 	      );
 	    }
@@ -25228,6 +25328,11 @@
 	        )
 	      ),
 	      React.createElement(PrisonLamp, { lightsOn: this.state.lightsOn }),
+	      React.createElement(Poster, { peeled: this.state.posterPeeled, safeOpen: this.state.safeOpen }),
+	      posterClicker,
+	      safeLock,
+	      letterClicker,
+	      openLetter,
 	      React.createElement(
 	        'div',
 	        { className: 'prison-wall' },
@@ -25236,14 +25341,16 @@
 	          { className: 'switch-box-dark', onClick: this.toggleLights },
 	          React.createElement('div', { className: 'switch-toggle-dark' })
 	        ),
-	        React.createElement(PrisonDoor, null)
+	        React.createElement(PrisonDoor, { haveKey: this.state.haveKey })
 	      ),
 	      React.createElement('div', { className: 'prison-wall-sidecorner-left' }),
 	      React.createElement('div', { className: 'prison-wall-sidecorner-right' }),
 	      React.createElement(
 	        'div',
 	        { className: 'prison-floor' },
-	        React.createElement(PrisonBed, null)
+	        React.createElement(PrisonBed, { sheetMoved: this.state.sheetMoved }),
+	        React.createElement('key', null),
+	        React.createElement('div', { className: 'bed-clicker', onClick: this.moveSheets })
 	      )
 	    );
 	  }
@@ -25297,7 +25404,16 @@
 	  },
 	
 	  openDoor: function () {
-	    this.setState({ doorOpen: !this.state.doorOpen });
+	    this.setState({ doorOpen: true });
+	  },
+	
+	  tryDoor: function () {
+	    if (!this.props.haveKey) {
+	      debugger;
+	      window.alert("The door is locked");
+	    } else {
+	      window.alert("That key doesn't work on this door");
+	    }
 	  },
 	
 	  render: function () {
@@ -25305,7 +25421,7 @@
 	    if (this.state.doorOpen) {
 	      return React.createElement(
 	        "div",
-	        { className: "prison-door", onClick: this.openDoor },
+	        { className: "prison-door", onClick: this.tryDoor },
 	        React.createElement(
 	          "div",
 	          { className: "prison-door-opening" },
@@ -25317,7 +25433,8 @@
 	            React.createElement("div", { className: "bar-open bar-2-open" }),
 	            React.createElement("div", { className: "bar-open bar-3-open" })
 	          )
-	        )
+	        ),
+	        React.createElement("div", { className: "door-handle-open", onClick: this.tryDoor })
 	      );
 	    }
 	
@@ -25330,6 +25447,13 @@
 	        React.createElement("div", { className: "bar bar-1", onClick: this.clickBar1 }),
 	        React.createElement("div", { className: "bar bar-2", onClick: this.clickBar2 }),
 	        React.createElement("div", { className: "bar bar-3", onClick: this.clickBar3 })
+	      ),
+	      React.createElement(
+	        "div",
+	        { className: "door-handle-div", onClick: this.tryDoor },
+	        React.createElement("div", { className: "door-key-hole" }),
+	        React.createElement("div", { className: "door-key-hole-bottom" }),
+	        React.createElement("div", { className: "door-handle" })
 	      )
 	    );
 	  }
@@ -25348,7 +25472,7 @@
 	
 	
 	  getInitialState: function () {
-	    return { sheetMoved: false };
+	    return { sheetMoved: this.props.sheetMoved };
 	  },
 	
 	  moveSheets: function () {
@@ -25357,36 +25481,32 @@
 	
 	  render: function () {
 	
-	    if (!this.state.sheetMoved) return React.createElement(
-	      "div",
-	      { className: "prison-bed-div" },
-	      React.createElement("div", { className: "head-board" }),
-	      React.createElement("div", { className: "footer-legs" }),
-	      React.createElement("div", { className: "top-covers" }),
-	      React.createElement("div", { className: "foot-of-bed" }),
-	      React.createElement(
+	    if (!this.props.sheetMoved) {
+	      return React.createElement(
 	        "div",
-	        { className: "side-covers" },
-	        React.createElement("div", { className: "bed-clicker", onClick: this.moveSheets })
-	      )
-	    );
+	        { className: "prison-bed-div" },
+	        React.createElement("div", { className: "head-board" }),
+	        React.createElement("div", { className: "side-covers-right" }),
+	        React.createElement("div", { className: "footer-legs" }),
+	        React.createElement("div", { className: "bed-side" }),
+	        React.createElement("div", { className: "bed-top" }),
+	        React.createElement("div", { className: "foot-of-bed" }),
+	        React.createElement("div", { className: "top-covers" }),
+	        React.createElement("div", { className: "side-covers" })
+	      );
+	    }
 	
 	    return React.createElement(
 	      "div",
 	      { className: "prison-bed-div" },
 	      React.createElement("div", { className: "head-board" }),
+	      React.createElement("div", { className: "side-covers-right-moved" }),
 	      React.createElement("div", { className: "footer-legs" }),
-	      React.createElement(
-	        "div",
-	        { className: "top-covers" },
-	        React.createElement("div", { className: "moved-top-covers" })
-	      ),
+	      React.createElement("div", { className: "bed-side" }),
+	      React.createElement("div", { className: "bed-top" }),
 	      React.createElement("div", { className: "foot-of-bed" }),
-	      React.createElement(
-	        "div",
-	        { className: "side-covers" },
-	        React.createElement("div", { className: "moved-side-covers", onClick: this.moveSheets })
-	      )
+	      React.createElement("div", { className: "top-covers-moved" }),
+	      React.createElement("div", { className: "side-covers-moved" })
 	    );
 	  }
 	
@@ -25396,33 +25516,6 @@
 
 /***/ },
 /* 226 */
-/***/ function(module, exports, __webpack_require__) {
-
-	React = __webpack_require__(1);
-	
-	var App = React.createClass({
-	  displayName: "App",
-	
-	
-	  render: function () {
-	    return React.createElement(
-	      "div",
-	      null,
-	      React.createElement(
-	        "header",
-	        { className: "csscape-header" },
-	        "This is a header"
-	      ),
-	      this.props.children
-	    );
-	  }
-	
-	});
-	
-	module.exports = App;
-
-/***/ },
-/* 227 */
 /***/ function(module, exports, __webpack_require__) {
 
 	React = __webpack_require__(1);
@@ -25458,7 +25551,7 @@
 	module.exports = Lamp;
 
 /***/ },
-/* 228 */
+/* 227 */
 /***/ function(module, exports, __webpack_require__) {
 
 	React = __webpack_require__(1);
@@ -25480,7 +25573,7 @@
 	module.exports = LightSwitch;
 
 /***/ },
-/* 229 */
+/* 228 */
 /***/ function(module, exports, __webpack_require__) {
 
 	React = __webpack_require__(1);
@@ -25501,12 +25594,145 @@
 	module.exports = CreepyEyes;
 
 /***/ },
+/* 229 */
+/***/ function(module, exports, __webpack_require__) {
+
+	React = __webpack_require__(1);
+	Safe = __webpack_require__(230);
+	
+	Poster = React.createClass({
+	  displayName: 'Poster',
+	
+	
+	  render: function () {
+	
+	    if (!this.props.peeled) {
+	      return React.createElement(
+	        'div',
+	        null,
+	        React.createElement(
+	          'div',
+	          { className: 'poster-marker' },
+	          ':)'
+	        ),
+	        React.createElement('div', { className: 'poster-div-top' }),
+	        React.createElement(
+	          'div',
+	          { className: 'poster-div' },
+	          React.createElement('div', { className: 'poster-person-head' }),
+	          React.createElement('div', { className: 'poster-person-finger' }),
+	          React.createElement('div', { className: 'poster-person-hand' }),
+	          React.createElement('div', { className: 'poster-person-arm' }),
+	          React.createElement('div', { className: 'poster-person-body' })
+	        )
+	      );
+	    }
+	
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement('div', { className: 'poster-div-top' }),
+	      React.createElement(
+	        'div',
+	        { className: 'poster-div' },
+	        React.createElement('div', { className: 'poster-person-head' }),
+	        React.createElement('div', { className: 'poster-person-finger' }),
+	        React.createElement('div', { className: 'poster-person-hand' }),
+	        React.createElement('div', { className: 'poster-person-arm' }),
+	        React.createElement('div', { className: 'poster-person-body' })
+	      ),
+	      React.createElement('div', { className: 'poster-corner-peeled' }),
+	      React.createElement(Safe, { safeOpen: this.props.safeOpen }),
+	      React.createElement('div', { className: 'poster-corner-peeled-overlay-new' })
+	    );
+	  }
+	
+	});
+	
+	module.exports = Poster;
+
+/***/ },
 /* 230 */
 /***/ function(module, exports, __webpack_require__) {
 
 	React = __webpack_require__(1);
+	Letter = __webpack_require__(233);
 	
-	Start = React.createClass({
+	Safe = React.createClass({
+	  displayName: 'Safe',
+	
+	
+	  render: function () {
+	
+	    if (!this.props.safeOpen) {
+	      return React.createElement(
+	        'div',
+	        { className: 'safe-div' },
+	        React.createElement('div', { className: 'safe-face-top' }),
+	        React.createElement(
+	          'div',
+	          { className: 'safe-face' },
+	          React.createElement('div', { className: 'safe-key-hole' }),
+	          React.createElement('div', { className: 'safe-key-hole-bottom' })
+	        )
+	      );
+	    }
+	    return React.createElement(
+	      'div',
+	      { className: 'safe-div' },
+	      React.createElement('div', { className: 'safe-face-top' }),
+	      React.createElement(
+	        'div',
+	        { className: 'safe-face' },
+	        React.createElement('div', { className: 'safe-open-top' }),
+	        React.createElement(
+	          'div',
+	          { className: 'safe-open' },
+	          React.createElement(Letter, null)
+	        )
+	      ),
+	      React.createElement('div', { className: 'safe-door-open' })
+	    );
+	  }
+	
+	});
+	
+	module.exports = Safe;
+
+/***/ },
+/* 231 */
+/***/ function(module, exports, __webpack_require__) {
+
+	React = __webpack_require__(1);
+	
+	var App = React.createClass({
+	  displayName: "App",
+	
+	
+	  render: function () {
+	    return React.createElement(
+	      "div",
+	      null,
+	      React.createElement(
+	        "header",
+	        { className: "csscape-header" },
+	        "This is a header"
+	      ),
+	      this.props.children
+	    );
+	  }
+	
+	});
+	
+	module.exports = App;
+
+/***/ },
+/* 232 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	
+	var Start = React.createClass({
 	  displayName: 'Start',
 	
 	
@@ -25524,6 +25750,27 @@
 	});
 	
 	module.exports = Start;
+
+/***/ },
+/* 233 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	
+	var Letter = React.createClass({
+	  displayName: "Letter",
+	
+	  getInitialState: function () {
+	    return { letterOpen: false };
+	  },
+	
+	  render: function () {
+	
+	    return React.createElement("div", { className: "letter" });
+	  }
+	});
+	
+	module.exports = Letter;
 
 /***/ }
 /******/ ]);
