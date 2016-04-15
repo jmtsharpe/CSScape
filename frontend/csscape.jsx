@@ -11,7 +11,7 @@ var Start = require('./components/startPage');
 
 var routes = (
   <Route path="/" component={App}>
-    <Route path="startPage" component={Start}/>
+    <Route path="" component={Start} />
     <Route path="chapter1" component={Chapter1} />
   </Route>
 );

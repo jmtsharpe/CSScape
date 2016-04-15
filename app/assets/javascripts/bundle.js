@@ -58,7 +58,7 @@
 	var routes = React.createElement(
 	  Route,
 	  { path: '/', component: App },
-	  React.createElement(Route, { path: 'startPage', component: Start }),
+	  React.createElement(Route, { path: '', component: Start }),
 	  React.createElement(Route, { path: 'chapter1', component: Chapter1 })
 	);
 	
@@ -25171,6 +25171,7 @@
 	var LightSwitch = __webpack_require__(227);
 	var CreepyEyes = __webpack_require__(228);
 	var Poster = __webpack_require__(229);
+	var Intro = __webpack_require__(234);
 	
 	var Prison = React.createClass({
 	  displayName: 'Prison',
@@ -25185,7 +25186,8 @@
 	      lightsOn: true,
 	      sheetMoved: false,
 	      posterPeeled: false,
-	      safeOpen: false
+	      safeOpen: false,
+	      intro: true
 	    };
 	  },
 	
@@ -25216,6 +25218,11 @@
 	    } else {
 	      window.alert("This safe is locked.");
 	    }
+	  },
+	
+	  exitIntro: function () {
+	    debugger;
+	    this.setState({ intro: false });
 	  },
 	
 	  render: function () {
@@ -25278,6 +25285,37 @@
 	            null,
 	            'play a bar'
 	          )
+	        )
+	      );
+	    }
+	
+	    if (this.state.intro) {
+	      return React.createElement(
+	        'div',
+	        { className: 'prison-background' },
+	        React.createElement(
+	          'div',
+	          { className: 'intro-div', onClick: this.exitIntro },
+	          React.createElement(Intro, null)
+	        ),
+	        React.createElement(PrisonLamp, { lightsOn: this.state.lightsOn }),
+	        React.createElement(Poster, { peeled: this.state.posterPeeled, safeOpen: this.state.safeOpen }),
+	        React.createElement(
+	          'div',
+	          { className: 'prison-wall' },
+	          React.createElement(
+	            'div',
+	            { className: 'switch-box', onClick: this.toggleLights },
+	            React.createElement('div', { className: 'switch-toggle' })
+	          ),
+	          React.createElement(PrisonDoor, { haveKey: this.state.haveKey })
+	        ),
+	        React.createElement('div', { className: 'prison-wall-sidecorner-left' }),
+	        React.createElement('div', { className: 'prison-wall-sidecorner-right' }),
+	        React.createElement(
+	          'div',
+	          { className: 'prison-floor' },
+	          React.createElement(PrisonBed, { sheetMoved: this.state.sheetMoved })
 	        )
 	      );
 	    }
@@ -25473,10 +25511,6 @@
 	
 	  getInitialState: function () {
 	    return { sheetMoved: this.props.sheetMoved };
-	  },
-	
-	  moveSheets: function () {
-	    this.setState({ sheetMoved: !this.state.sheetMoved });
 	  },
 	
 	  render: function () {
@@ -25704,24 +25738,34 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	React = __webpack_require__(1);
+	Prison = __webpack_require__(223);
+	Intro = __webpack_require__(234);
 	
 	var App = React.createClass({
-	  displayName: "App",
+	  displayName: 'App',
 	
+	
+	  getInitialState: function () {
+	    return { intro: true };
+	  },
+	
+	  closeIntro: function () {
+	    debugger;
+	    this.setState({ intro: false });
+	  },
 	
 	  render: function () {
 	    return React.createElement(
-	      "div",
+	      'div',
 	      null,
 	      React.createElement(
-	        "header",
-	        { className: "csscape-header" },
-	        "This is a header"
+	        'header',
+	        { className: 'csscape-header' },
+	        'CSScape the Room'
 	      ),
-	      this.props.children
+	      React.createElement(Prison, null)
 	    );
 	  }
-	
 	});
 	
 	module.exports = App;
@@ -25765,12 +25809,53 @@
 	  },
 	
 	  render: function () {
-	
 	    return React.createElement("div", { className: "letter" });
 	  }
 	});
 	
 	module.exports = Letter;
+
+/***/ },
+/* 234 */
+/***/ function(module, exports, __webpack_require__) {
+
+	React = __webpack_require__(1);
+	
+	Intro = React.createClass({
+	  displayName: "Intro",
+	
+	
+	  render: function () {
+	
+	    return React.createElement(
+	      "div",
+	      { className: "intro-text" },
+	      React.createElement(
+	        "h2",
+	        null,
+	        "You need to get out!"
+	      ),
+	      React.createElement(
+	        "p",
+	        null,
+	        "You find yourself in what appears to be a prison cell. But you don't remember committing any crime."
+	      ),
+	      React.createElement(
+	        "p",
+	        null,
+	        "In fact, you don't remember anything at all."
+	      ),
+	      React.createElement(
+	        "p",
+	        null,
+	        "[use your mouse to find clues to make your way out.]"
+	      )
+	    );
+	  }
+	
+	});
+	
+	module.exports = Intro;
 
 /***/ }
 /******/ ]);

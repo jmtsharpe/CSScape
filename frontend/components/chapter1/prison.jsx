@@ -5,6 +5,7 @@ var PrisonLamp = require('./lamp');
 var LightSwitch = require('./LightSwitch');
 var CreepyEyes = require('./creepyEyes')
 var Poster = require('./poster');
+var Intro = require('./../app/intro');
 
 var Prison = React.createClass({
 
@@ -17,7 +18,8 @@ var Prison = React.createClass({
       lightsOn: true,
       sheetMoved: false,
       posterPeeled: false,
-      safeOpen: false
+      safeOpen: false,
+      intro: true
     });
   },
 
@@ -48,6 +50,11 @@ var Prison = React.createClass({
     } else {
       window.alert("This safe is locked.")
     }
+  },
+
+  exitIntro: function () {
+    debugger
+    this.setState({ intro: false });
   },
 
 
@@ -97,6 +104,31 @@ var Prison = React.createClass({
           <h3>play a bar</h3>
         </div>
       </div>
+    }
+
+    if (this.state.intro) {
+      return (
+        <div className="prison-background">
+          <div className="intro-div" onClick={this.exitIntro} >
+            <Intro  />
+          </div>
+          <PrisonLamp lightsOn={this.state.lightsOn}/>
+          <Poster peeled={this.state.posterPeeled} safeOpen={this.state.safeOpen}/>
+          <div className="prison-wall">
+            <div className="switch-box" onClick={this.toggleLights}>
+              <div className="switch-toggle">
+              </div>
+            </div>
+
+            <PrisonDoor haveKey={this.state.haveKey} />
+          </div>
+          <div className="prison-wall-sidecorner-left"></div>
+          <div className="prison-wall-sidecorner-right"></div>
+          <div className="prison-floor">
+            <PrisonBed  sheetMoved={this.state.sheetMoved} />
+          </div>
+        </div>
+      );
     }
 
     if (this.state.lightsOn) {

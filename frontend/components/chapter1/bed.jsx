@@ -6,10 +6,6 @@ PrisonBed = React.createClass({
     return({ sheetMoved: this.props.sheetMoved });
   },
 
-  moveSheets: function () {
-    this.setState({ sheetMoved: !this.state.sheetMoved});
-  },
-
   render: function () {
 
     if (!this.props.sheetMoved) {

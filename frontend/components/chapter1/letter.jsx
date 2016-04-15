@@ -5,17 +5,10 @@ var Letter = React.createClass({
     return ({ letterOpen: false })
   },
 
-
-
   render: function () {
-
-
-      return (
-        <div className="letter"></div>
-      );
-
-
-
+    return (
+      <div className="letter"></div>
+    );
   }
 });
 
