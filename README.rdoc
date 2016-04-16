@@ -1,1 +1,8 @@
-== README
+== CSScape
+CSScape is a javascript browser game. Find clues, crack the code, and try your best to escape!
+[**Try to escape!**](https://www.csscape.io)
+
+
+http://imgur.com/0CMu3Aq.png
+
+####How to Run the Game
