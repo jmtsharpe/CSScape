@@ -41,7 +41,7 @@
 
  body {
    text-decoration: none;
-   font-family: sans-serif;
+   font-family: 'Tangerine', cursive, sans-serif;
    height: 100%;
    box-sizing: content-box;
    position: absolute;
@@ -109,7 +109,18 @@
   width: 640px;
   background: beige;
   text-align: center;
-  font-family: fantasy;
+
+  font-size: 24px;
+}
+
+.intro-text h2 {
+  margin-bottom: 10px;
+}
+
+#instructions {
+  font-size: 16px;
+  font-family: sans-serif;
+  margin-top: 20px;
 }
 
 

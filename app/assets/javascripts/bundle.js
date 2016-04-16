@@ -52,8 +52,8 @@
 	var Route = __webpack_require__(166).Route;
 	var IndexRoute = __webpack_require__(166).IndexRoute;
 	var Chapter1 = __webpack_require__(223);
-	var App = __webpack_require__(231);
-	var Start = __webpack_require__(232);
+	var App = __webpack_require__(233);
+	var Start = __webpack_require__(234);
 	
 	var routes = React.createElement(
 	  Route,
@@ -25171,7 +25171,7 @@
 	var LightSwitch = __webpack_require__(227);
 	var CreepyEyes = __webpack_require__(228);
 	var Poster = __webpack_require__(229);
-	var Intro = __webpack_require__(234);
+	var Intro = __webpack_require__(232);
 	
 	var Prison = React.createClass({
 	  displayName: 'Prison',
@@ -25690,7 +25690,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	React = __webpack_require__(1);
-	Letter = __webpack_require__(233);
+	Letter = __webpack_require__(231);
 	
 	Safe = React.createClass({
 	  displayName: 'Safe',
@@ -25737,9 +25737,71 @@
 /* 231 */
 /***/ function(module, exports, __webpack_require__) {
 
+	var React = __webpack_require__(1);
+	
+	var Letter = React.createClass({
+	  displayName: "Letter",
+	
+	  getInitialState: function () {
+	    return { letterOpen: false };
+	  },
+	
+	  render: function () {
+	    return React.createElement("div", { className: "letter" });
+	  }
+	});
+	
+	module.exports = Letter;
+
+/***/ },
+/* 232 */
+/***/ function(module, exports, __webpack_require__) {
+
+	React = __webpack_require__(1);
+	
+	Intro = React.createClass({
+	  displayName: "Intro",
+	
+	
+	  render: function () {
+	
+	    return React.createElement(
+	      "div",
+	      { className: "intro-text" },
+	      React.createElement(
+	        "h2",
+	        null,
+	        "You need to get out!"
+	      ),
+	      React.createElement(
+	        "p",
+	        null,
+	        "You find yourself in what appears to be a prison cell. But you don't remember committing any crime."
+	      ),
+	      React.createElement(
+	        "p",
+	        null,
+	        "In fact, you don't remember anything at all."
+	      ),
+	      React.createElement(
+	        "p",
+	        { id: "instructions" },
+	        "[use your mouse to find clues to make your way out.]"
+	      )
+	    );
+	  }
+	
+	});
+	
+	module.exports = Intro;
+
+/***/ },
+/* 233 */
+/***/ function(module, exports, __webpack_require__) {
+
 	React = __webpack_require__(1);
 	Prison = __webpack_require__(223);
-	Intro = __webpack_require__(234);
+	Intro = __webpack_require__(232);
 	
 	var App = React.createClass({
 	  displayName: 'App',
@@ -25771,7 +25833,7 @@
 	module.exports = App;
 
 /***/ },
-/* 232 */
+/* 234 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -25794,68 +25856,6 @@
 	});
 	
 	module.exports = Start;
-
-/***/ },
-/* 233 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	
-	var Letter = React.createClass({
-	  displayName: "Letter",
-	
-	  getInitialState: function () {
-	    return { letterOpen: false };
-	  },
-	
-	  render: function () {
-	    return React.createElement("div", { className: "letter" });
-	  }
-	});
-	
-	module.exports = Letter;
-
-/***/ },
-/* 234 */
-/***/ function(module, exports, __webpack_require__) {
-
-	React = __webpack_require__(1);
-	
-	Intro = React.createClass({
-	  displayName: "Intro",
-	
-	
-	  render: function () {
-	
-	    return React.createElement(
-	      "div",
-	      { className: "intro-text" },
-	      React.createElement(
-	        "h2",
-	        null,
-	        "You need to get out!"
-	      ),
-	      React.createElement(
-	        "p",
-	        null,
-	        "You find yourself in what appears to be a prison cell. But you don't remember committing any crime."
-	      ),
-	      React.createElement(
-	        "p",
-	        null,
-	        "In fact, you don't remember anything at all."
-	      ),
-	      React.createElement(
-	        "p",
-	        null,
-	        "[use your mouse to find clues to make your way out.]"
-	      )
-	    );
-	  }
-	
-	});
-	
-	module.exports = Intro;
 
 /***/ }
 /******/ ]);
