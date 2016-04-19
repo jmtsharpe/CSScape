@@ -1,9 +1,14 @@
 React = require('react');
+var Router = require('react-router').Router;
 
 var PrisonDoor = React.createClass({
 
+  contextTypes: {
+    router: React.PropTypes.object.isRequired
+  },
+
   getInitialState: function () {
-    return ({ bar1: 0, bar2: 0, bar3: 0, doorOpen: false})
+    return ({ bar1: 0, bar2: 0, bar3: 0, doorOpen: false, tryDoor: false, tryDoorWKey: false})
   },
 
   clickBar1: function () {
@@ -43,17 +48,41 @@ var PrisonDoor = React.createClass({
   tryDoor: function () {
     if (!this.props.haveKey) {
       debugger
-      window.alert("The door is locked")
+      this.setState({ tryDoor: !this.state.tryDoor });
     } else {
-      window.alert("That key doesn't work on this door")
+      debugger
+      this.setState({ tryDoorWKey: !this.state.tryDoorWKey });
     }
   },
 
   render: function () {
 
+    var gameOver =
+    <div className="game-over">
+      <div className="end-game-message">CONGRATULATIONS YOU ESCAPED THE ROOM...but now what?</div>
+  </div>;
+
+    if (this.state.tryDoor) {
+      var tryDoor =
+        <div className="door-modal" onClick={this.tryDoor}>
+          <div className="door-fail-arrow"></div>
+          <div className="door-fail-message">This door is locked</div>
+        </div>;
+    }
+
+    if (this.state.tryDoorWKey) {
+      debugger
+      var tryDoorWKey =
+        <div className="door-modal" onClick={this.tryDoor}>
+          <div className="door-fail-arrow"></div>
+          <div className="door-fail-message-wkey">This key doesn't work on this door</div>
+        </div>;
+    }
+
     if (this.state.doorOpen) {
       return (
         <div className="prison-door" onClick={this.tryDoor}>
+          {gameOver}
           <div className="prison-door-opening">
             <div className="prison-door-window-open-bottom"></div>
             <div className="prison-door-window-open-top">
@@ -69,6 +98,8 @@ var PrisonDoor = React.createClass({
 
     return (
       <div className="prison-door">
+        {tryDoor}
+        {tryDoorWKey}
         <div className="prison-door-window">
           <div className="bar bar-1" onClick={this.clickBar1}></div>
           <div className="bar bar-2" onClick={this.clickBar2}></div>

@@ -15,10 +15,13 @@ var Prison = React.createClass({
       haveLetter: false,
       letterOpen: false,
       doorOpen: false,
+      doorAttemptWKey: false,
+      doorAttemptNoKey: false,
       lightsOn: true,
       sheetMoved: false,
       posterPeeled: false,
       safeOpen: false,
+      safeAttempt: false,
       intro: true
     });
   },
@@ -48,18 +51,25 @@ var Prison = React.createClass({
     if (this.state.haveKey) {
       this.setState({ safeOpen: true})
     } else {
-      window.alert("This safe is locked.")
+      this.setState({ safeAttempt: !this.state.safeAttempt })
     }
   },
 
   exitIntro: function () {
-    debugger
     this.setState({ intro: false });
   },
 
 
 
   render: function () {
+
+    if (this.state.safeAttempt) {
+      var safeModal =
+        <div className="safe-modal" onClick={this.openSafe}>
+          <div className="safe-fail-arrow"></div>
+          <div className="safe-fail-message">It's locked!</div>
+        </div>
+    }
 
     if (!this.state.haveKey) {
       var key =
@@ -134,6 +144,7 @@ var Prison = React.createClass({
     if (this.state.lightsOn) {
       return (
         <div className="prison-background">
+          {safeModal}
           <PrisonLamp lightsOn={this.state.lightsOn}/>
           <Poster peeled={this.state.posterPeeled} safeOpen={this.state.safeOpen}/>
           {posterClicker}

@@ -63,6 +63,7 @@
 
 
 
+
   /*/ CLEARFIX /*/
 
  .group:after {
@@ -77,6 +78,32 @@
   color: white;
   height: 40px;
   background: #222222;
+
+}
+
+/*/ GAME OVER /*/
+
+.game-over {
+  z-index: 100000;
+  position: absolute;
+
+  top: -200px;
+  left: -400px;
+
+  height: 600px;
+  width: 1000px;
+
+
+}
+
+.end-game-message {
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  font-family: sans-serif;
+  padding-top: 20px;
+  height: 80px;
+  background: rgba(20, 20, 0, 0.5);
 
 }
 
@@ -123,6 +150,111 @@
   margin-top: 20px;
 }
 
+/*/ MODALS /*/
+
+.door-modal {
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  font-family: sans-serif;
+
+
+}
+
+.door-fail-message {
+  position: absolute;
+  right: 40px;
+  top: 80px;
+
+  padding-top: 20px;
+  border-radius: 50%;
+  text-align: center;
+  background: beige;
+  margin: auto;
+  width: 110px;
+  height: 50px;
+}
+
+.door-fail-message-wkey {
+  position: absolute;
+  right: 40px;
+  top: 60px;
+
+  padding-top: 20px;
+  border-radius: 50%;
+  text-align: center;
+  background: beige;
+  margin: auto;
+  width: 110px;
+  height: 70px;
+}
+
+.door-fail-arrow {
+  position: absolute;
+
+  right: 45px;
+  top: 125px;
+
+  transform: skewX(20deg);
+
+  text-align: center;
+  background: beige;
+  margin: auto;
+  width: 30px;
+  height: 20px;
+
+}
+
+
+.safe-modal {
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  font-family: sans-serif;
+
+  /*background: rgba(0, 0, 0, 0.5);*/
+}
+
+.safe-fail-arrow {
+  position: absolute;
+
+  right: 130px;
+  top: 195px;
+
+  transform: skewX(20deg);
+
+  text-align: center;
+  background: beige;
+  margin: auto;
+  width: 20px;
+  height: 20px;
+
+}
+
+.safe-fail-message {
+  position: absolute;
+
+  right: 130px;
+  top: 160px;
+
+  padding-top: 25px;
+  border-radius: 50%;
+  text-align: center;
+  background: beige;
+  margin: auto;
+  width: 100px;
+  height: 40px;
+}
 
 
 

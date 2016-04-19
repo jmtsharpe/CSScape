@@ -25183,10 +25183,13 @@
 	      haveLetter: false,
 	      letterOpen: false,
 	      doorOpen: false,
+	      doorAttemptWKey: false,
+	      doorAttemptNoKey: false,
 	      lightsOn: true,
 	      sheetMoved: false,
 	      posterPeeled: false,
 	      safeOpen: false,
+	      safeAttempt: false,
 	      intro: true
 	    };
 	  },
@@ -25216,16 +25219,28 @@
 	    if (this.state.haveKey) {
 	      this.setState({ safeOpen: true });
 	    } else {
-	      window.alert("This safe is locked.");
+	      this.setState({ safeAttempt: !this.state.safeAttempt });
 	    }
 	  },
 	
 	  exitIntro: function () {
-	    debugger;
 	    this.setState({ intro: false });
 	  },
 	
 	  render: function () {
+	
+	    if (this.state.safeAttempt) {
+	      var safeModal = React.createElement(
+	        'div',
+	        { className: 'safe-modal', onClick: this.openSafe },
+	        React.createElement('div', { className: 'safe-fail-arrow' }),
+	        React.createElement(
+	          'div',
+	          { className: 'safe-fail-message' },
+	          'It\'s locked!'
+	        )
+	      );
+	    }
 	
 	    if (!this.state.haveKey) {
 	      var key = React.createElement(
@@ -25324,6 +25339,7 @@
 	      return React.createElement(
 	        'div',
 	        { className: 'prison-background' },
+	        safeModal,
 	        React.createElement(PrisonLamp, { lightsOn: this.state.lightsOn }),
 	        React.createElement(Poster, { peeled: this.state.posterPeeled, safeOpen: this.state.safeOpen }),
 	        posterClicker,
@@ -25402,13 +25418,18 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	React = __webpack_require__(1);
+	var Router = __webpack_require__(166).Router;
 	
 	var PrisonDoor = React.createClass({
-	  displayName: "PrisonDoor",
+	  displayName: 'PrisonDoor',
 	
+	
+	  contextTypes: {
+	    router: React.PropTypes.object.isRequired
+	  },
 	
 	  getInitialState: function () {
-	    return { bar1: 0, bar2: 0, bar3: 0, doorOpen: false };
+	    return { bar1: 0, bar2: 0, bar3: 0, doorOpen: false, tryDoor: false, tryDoorWKey: false };
 	  },
 	
 	  clickBar1: function () {
@@ -25448,50 +25469,91 @@
 	  tryDoor: function () {
 	    if (!this.props.haveKey) {
 	      debugger;
-	      window.alert("The door is locked");
+	      this.setState({ tryDoor: !this.state.tryDoor });
 	    } else {
-	      window.alert("That key doesn't work on this door");
+	      debugger;
+	      this.setState({ tryDoorWKey: !this.state.tryDoorWKey });
 	    }
 	  },
 	
 	  render: function () {
 	
+	    var gameOver = React.createElement(
+	      'div',
+	      { className: 'game-over' },
+	      React.createElement(
+	        'div',
+	        { className: 'end-game-message' },
+	        'CONGRATULATIONS YOU ESCAPED THE ROOM...but now what?'
+	      )
+	    );
+	
+	    if (this.state.tryDoor) {
+	      var tryDoor = React.createElement(
+	        'div',
+	        { className: 'door-modal', onClick: this.tryDoor },
+	        React.createElement('div', { className: 'door-fail-arrow' }),
+	        React.createElement(
+	          'div',
+	          { className: 'door-fail-message' },
+	          'This door is locked'
+	        )
+	      );
+	    }
+	
+	    if (this.state.tryDoorWKey) {
+	      debugger;
+	      var tryDoorWKey = React.createElement(
+	        'div',
+	        { className: 'door-modal', onClick: this.tryDoor },
+	        React.createElement('div', { className: 'door-fail-arrow' }),
+	        React.createElement(
+	          'div',
+	          { className: 'door-fail-message-wkey' },
+	          'This key doesn\'t work on this door'
+	        )
+	      );
+	    }
+	
 	    if (this.state.doorOpen) {
 	      return React.createElement(
-	        "div",
-	        { className: "prison-door", onClick: this.tryDoor },
+	        'div',
+	        { className: 'prison-door', onClick: this.tryDoor },
+	        gameOver,
 	        React.createElement(
-	          "div",
-	          { className: "prison-door-opening" },
-	          React.createElement("div", { className: "prison-door-window-open-bottom" }),
+	          'div',
+	          { className: 'prison-door-opening' },
+	          React.createElement('div', { className: 'prison-door-window-open-bottom' }),
 	          React.createElement(
-	            "div",
-	            { className: "prison-door-window-open-top" },
-	            React.createElement("div", { className: "bar-open bar-1-open" }),
-	            React.createElement("div", { className: "bar-open bar-2-open" }),
-	            React.createElement("div", { className: "bar-open bar-3-open" })
+	            'div',
+	            { className: 'prison-door-window-open-top' },
+	            React.createElement('div', { className: 'bar-open bar-1-open' }),
+	            React.createElement('div', { className: 'bar-open bar-2-open' }),
+	            React.createElement('div', { className: 'bar-open bar-3-open' })
 	          )
 	        ),
-	        React.createElement("div", { className: "door-handle-open", onClick: this.tryDoor })
+	        React.createElement('div', { className: 'door-handle-open', onClick: this.tryDoor })
 	      );
 	    }
 	
 	    return React.createElement(
-	      "div",
-	      { className: "prison-door" },
+	      'div',
+	      { className: 'prison-door' },
+	      tryDoor,
+	      tryDoorWKey,
 	      React.createElement(
-	        "div",
-	        { className: "prison-door-window" },
-	        React.createElement("div", { className: "bar bar-1", onClick: this.clickBar1 }),
-	        React.createElement("div", { className: "bar bar-2", onClick: this.clickBar2 }),
-	        React.createElement("div", { className: "bar bar-3", onClick: this.clickBar3 })
+	        'div',
+	        { className: 'prison-door-window' },
+	        React.createElement('div', { className: 'bar bar-1', onClick: this.clickBar1 }),
+	        React.createElement('div', { className: 'bar bar-2', onClick: this.clickBar2 }),
+	        React.createElement('div', { className: 'bar bar-3', onClick: this.clickBar3 })
 	      ),
 	      React.createElement(
-	        "div",
-	        { className: "door-handle-div", onClick: this.tryDoor },
-	        React.createElement("div", { className: "door-key-hole" }),
-	        React.createElement("div", { className: "door-key-hole-bottom" }),
-	        React.createElement("div", { className: "door-handle" })
+	        'div',
+	        { className: 'door-handle-div', onClick: this.tryDoor },
+	        React.createElement('div', { className: 'door-key-hole' }),
+	        React.createElement('div', { className: 'door-key-hole-bottom' }),
+	        React.createElement('div', { className: 'door-handle' })
 	      )
 	    );
 	  }
