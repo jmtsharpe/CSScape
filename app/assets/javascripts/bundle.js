@@ -25468,12 +25468,15 @@
 	
 	  tryDoor: function () {
 	    if (!this.props.haveKey) {
-	      debugger;
 	      this.setState({ tryDoor: !this.state.tryDoor });
 	    } else {
-	      debugger;
 	      this.setState({ tryDoorWKey: !this.state.tryDoorWKey });
 	    }
+	  },
+	
+	  restart: function () {
+	    debugger;
+	    this.context.router.push("/");
 	  },
 	
 	  render: function () {
@@ -25484,7 +25487,16 @@
 	      React.createElement(
 	        'div',
 	        { className: 'end-game-message' },
-	        'CONGRATULATIONS YOU ESCAPED THE ROOM...but now what?'
+	        React.createElement(
+	          'p',
+	          null,
+	          'CONGRATULATIONS YOU ESCAPED THE ROOM...but now what?'
+	        ),
+	        React.createElement(
+	          'a',
+	          { href: 'http://www.csscape.io/', className: 'restart-link', onCLick: this.restart },
+	          'Play again?'
+	        )
 	      )
 	    );
 	
@@ -25885,7 +25897,51 @@
 	      React.createElement(
 	        'header',
 	        { className: 'csscape-header' },
-	        'CSScape the Room'
+	        React.createElement(
+	          'ul',
+	          { className: 'credits-and-title' },
+	          React.createElement(
+	            'li',
+	            null,
+	            'CSScape the Room'
+	          ),
+	          React.createElement(
+	            'li',
+	            null,
+	            'Created by James Sharpe'
+	          )
+	        ),
+	        React.createElement(
+	          'ul',
+	          { className: 'my-links' },
+	          React.createElement(
+	            'li',
+	            null,
+	            React.createElement(
+	              'a',
+	              { href: 'https://github.com/jmtsharpe/' },
+	              'Github'
+	            )
+	          ),
+	          React.createElement(
+	            'li',
+	            null,
+	            React.createElement(
+	              'a',
+	              { href: 'https://linkedin.com/in/jmtsharpe' },
+	              'LinkedIn'
+	            )
+	          ),
+	          React.createElement(
+	            'li',
+	            null,
+	            React.createElement(
+	              'a',
+	              { href: 'http://www.jamesmtsharpe.com' },
+	              'More about James'
+	            )
+	          )
+	        )
 	      ),
 	      React.createElement(Prison, null)
 	    );

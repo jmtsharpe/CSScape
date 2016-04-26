@@ -78,7 +78,36 @@
   color: white;
   height: 40px;
   background: #222222;
+  font-family: sans-serif;
 
+}
+
+.csscape-header a:hover {
+  background: white;
+  color: black;
+}
+
+.credits-and-title {
+  float: left;
+}
+
+.credits-and-title > li {
+  float: left;
+  padding: 10px 10px;
+}
+
+.my-links {
+  float: right;
+}
+
+.my-links > li {
+  float: left;
+  margin-top: 10px;
+
+}
+
+.my-links a {
+  padding: 12px 10px;
 }
 
 /*/ GAME OVER /*/
@@ -102,9 +131,28 @@
   font-weight: bold;
   font-family: sans-serif;
   padding-top: 20px;
-  height: 80px;
-  background: rgba(20, 20, 0, 0.5);
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
 
+}
+
+.end-game-message > p {
+  padding: 20px;
+}
+
+.restart-link {
+  border-radius: 1px;
+  padding: 10px;
+  font-family: 'Tangerine', cursive, sans-serif;
+  color: white;
+  letter-spacing: 5px;
+}
+
+.restart-link:hover {
+  font-weight: normal;
+  cursor: pointer;
+  text-decoration: underline;
+  margin: auto;
 }
 
 /*/ INTRO /*/

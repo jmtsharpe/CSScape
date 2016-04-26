@@ -47,19 +47,25 @@ var PrisonDoor = React.createClass({
 
   tryDoor: function () {
     if (!this.props.haveKey) {
-      debugger
       this.setState({ tryDoor: !this.state.tryDoor });
     } else {
-      debugger
       this.setState({ tryDoorWKey: !this.state.tryDoorWKey });
     }
+  },
+
+  restart: function () {
+    debugger
+    this.context.router.push("/");
   },
 
   render: function () {
 
     var gameOver =
     <div className="game-over">
-      <div className="end-game-message">CONGRATULATIONS YOU ESCAPED THE ROOM...but now what?</div>
+      <div className="end-game-message">
+        <p>CONGRATULATIONS YOU ESCAPED THE ROOM...but now what?</p>
+        <a href="http://www.csscape.io/" className="restart-link" onCLick={this.restart}>Play again?</a>
+    </div>
   </div>;
 
     if (this.state.tryDoor) {

@@ -16,7 +16,36 @@ var App = React.createClass({
   render: function () {
     return (
       <div>
-        <header className="csscape-header">CSScape the Room</header>
+        <header className="csscape-header">
+          <ul className="credits-and-title">
+            <li>
+              CSScape the Room
+            </li>
+            <li>
+              Created by James Sharpe
+            </li>
+          </ul>
+
+          <ul className="my-links">
+            <li>
+              <a href="https://github.com/jmtsharpe/">
+                Github
+              </a>
+            </li>
+            <li>
+              <a href="https://linkedin.com/in/jmtsharpe">
+                LinkedIn
+              </a>
+            </li>
+            <li>
+              <a href="http://www.jamesmtsharpe.com">
+                More about James
+              </a>
+            </li>
+
+          </ul>
+
+        </header>
         <Prison />
       </div>
     );
