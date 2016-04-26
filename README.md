@@ -17,7 +17,5 @@ Use your mouse to explore the room and look for clues.
 
 ## To-Do
 
-- [ ] Add game over screen
-- [ ] Replace javascript alerts with modals
 - [ ] Add additional levels
 - [ ] Add animations using CSS transitions
