@@ -132,7 +132,8 @@
   font-family: sans-serif;
   padding-top: 20px;
   height: 100%;
-  background: rgba(0, 0, 0, 0.3);
+  /*background: rgba(0, 0, 0, 0.3);*/
+  background: linear-gradient(to bottom,rgba(20,20,20,.5) 0,rgba(55,55,55,.6) 100%);
 
 }
 
@@ -141,7 +142,7 @@
 }
 
 .restart-link {
-  border-radius: 1px;
+  border-radius: 5px;
   padding: 10px;
   font-family: 'Tangerine', cursive, sans-serif;
   color: white;
@@ -149,10 +150,10 @@
 }
 
 .restart-link:hover {
-  font-weight: normal;
   cursor: pointer;
-  text-decoration: underline;
+  color: #222222;
   margin: auto;
+  background: rgba(250, 250, 250, 0.6);
 }
 
 /*/ INTRO /*/
@@ -1153,6 +1154,15 @@
   cursor: pointer;
 }
 
+.note-names {
+  padding-top: 55px;
+  position: absolute;
+}
+
+.note-names li {
+  padding: 9.5px 5px;
+}
+
 .note {
   position: absolute;
   border-radius: 50%;
@@ -1162,11 +1172,20 @@
   border: 10px solid black;
 }
 
+
 .music-staffs {
+
   padding-top: 50px;
   width: 350px;
   margin: auto;
+  text-align: center;
 }
+
+.music-staffs h2 {
+  margin: auto;
+  padding: 10px;
+}
+
 
 .music-staff-1 {
   height: 30px;
@@ -1197,25 +1216,25 @@
 }
 
 .g-note-1 {
-
+  left: 40px
 }
 
 .g-note-2 {
-  left: 210px
+  left: 220px
 }
 
 .e-note-1 {
-  left: 150px;
+  left: 160px;
 }
 
 .e-note-2 {
-  left: 330px;
+  left: 340px;
 }
 
 .c-note-1 {
-  left: 90px
+  left: 100px
 }
 
 .c-note-2 {
-  left: 270px
+  left: 280px
 }

@@ -95,6 +95,12 @@ var Prison = React.createClass({
     if (this.state.letterOpen) {
       var openLetter =
       <div className="open-letter" onClick={this.openLetter}>
+        <ul className="note-names">
+          <li>G</li>
+          <li>E</li>
+          <li>C</li>
+          <li>A</li>
+        </ul>
         <div className="music-staffs">
           <div className="music-staff-1">
             <div className="g-note-1 note"></div>
@@ -111,7 +117,7 @@ var Prison = React.createClass({
           </div>
           <div className="music-staff-4"></div>
           <h2>THIS SONG WILL SET YOU FREE</h2>
-          <h3>play a bar</h3>
+          <h2>play a bar</h2>
         </div>
       </div>
     }

@@ -25269,6 +25269,30 @@
 	        'div',
 	        { className: 'open-letter', onClick: this.openLetter },
 	        React.createElement(
+	          'ul',
+	          { className: 'note-names' },
+	          React.createElement(
+	            'li',
+	            null,
+	            'G'
+	          ),
+	          React.createElement(
+	            'li',
+	            null,
+	            'E'
+	          ),
+	          React.createElement(
+	            'li',
+	            null,
+	            'C'
+	          ),
+	          React.createElement(
+	            'li',
+	            null,
+	            'A'
+	          )
+	        ),
+	        React.createElement(
 	          'div',
 	          { className: 'music-staffs' },
 	          React.createElement(
@@ -25296,7 +25320,7 @@
 	            'THIS SONG WILL SET YOU FREE'
 	          ),
 	          React.createElement(
-	            'h3',
+	            'h2',
 	            null,
 	            'play a bar'
 	          )
@@ -25494,8 +25518,8 @@
 	        ),
 	        React.createElement(
 	          'a',
-	          { href: 'http://www.csscape.io', className: 'restart-link' },
-	          'Play again?'
+	          { href: 'https://github.com/jmtsharpe/CSScape', className: 'restart-link' },
+	          'Check out the github page!'
 	        )
 	      )
 	    );

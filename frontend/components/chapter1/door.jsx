@@ -64,7 +64,7 @@ var PrisonDoor = React.createClass({
     <div className="game-over">
       <div className="end-game-message">
         <p>CONGRATULATIONS YOU ESCAPED THE ROOM...but now what?</p>
-        <a href="http://www.csscape.io" className="restart-link" >Play again?</a>
+        <a href="https://github.com/jmtsharpe/CSScape" className="restart-link" >Check out the github page!</a>
     </div>
   </div>;
 
