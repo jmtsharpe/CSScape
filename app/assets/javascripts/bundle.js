@@ -25494,7 +25494,7 @@
 	        ),
 	        React.createElement(
 	          'a',
-	          { href: 'http://www.csscape.io/#/', className: 'restart-link' },
+	          { href: 'http://www.csscape.io', className: 'restart-link' },
 	          'Play again?'
 	        )
 	      )
