@@ -5,7 +5,7 @@ CSScape is a javascript browser game. Find clues, crack the code, and try your b
 
 ## Getting started
 
-To run this game, open the index.html file with your web browser or [try to escape](http://www.csscape.io) via the live version.
+To play this game [try to escape](http://www.csscape.io) via the live version.
 
 ## How to Play
 
